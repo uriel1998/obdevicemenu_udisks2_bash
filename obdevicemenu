@@ -1,21 +1,23 @@
 #!/bin/bash
 
-#=============================================================================#
-#          FILE: obdevicemenu                                                 #
-#       VERSION: 1.6.1                                                        #
-#                                                                             #
-#   DESCRIPTION: obdevicemenu is an Openbox pipe menu that uses udisks to     #
-#                easily mount, unmount or eject removable devices. An         #
-#                extensive configuration file allows desktop notifications    #
-#                about the success or failure of operations, as well as the   #
-#                modification of several other options.                       #
-#       LICENSE: GPL3                                                         #
-#        AUTHOR: Jamie Nguyen   
-#       Udisks2 tweaks: Steven Saus                                              #
-#=============================================================================#
+########################################################################
+#          FILE: obdevicemenu                                                 
+#       VERSION: 2                                                            
+#                                                                             
+#   DESCRIPTION: obdevicemenu is an Openbox pipe menu that uses udisks to     
+#                easily mount, unmount or eject removable devices. An         
+#                extensive configuration file allows desktop notifications     
+#                about the success or failure of operations, as well as the   
+#                modification of several other options.                       
+#       LICENSE: GPL3                                                         
+#        AUTHOR: Jamie Nguyen                                                   
+#  UDISKS2 REVS: Steven Saus                                              
+########################################################################
+
 
 # Copyright (C) 2011 Jamie Nguyen
-#
+# Udisks2 Revision (C) 2019 Steven Saus
+
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License v3 as published by the
 # Free Software Foundation.
@@ -30,9 +32,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 
-#-------------------------------------#
-#           CONFIGURATION             #
-#-------------------------------------#
+########################################################################
+#           CONFIGURATION             
+########################################################################
+
 # {{{
 
 unset GREP_OPTIONS
@@ -42,9 +45,6 @@ declare notify="/usr/bin/notify-send"
 declare notify_options="--expire-time=3000"
 declare optical_devices="-E ^/dev/sr[0-9]+"
 declare removable_devices="-E ^/dev/sd[b-z][0-9]*|^/dev/mmcblk[0-9]+p*[0-9]*"
-
-#May have to remove these
-declare mount_options="-o nosuid,noexec,noatime"
 
 declare -i show_internal=0
 declare -i show_notifications=0

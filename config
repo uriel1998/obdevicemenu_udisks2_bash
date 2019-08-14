@@ -4,11 +4,7 @@
 # Place in ~/.config/obdevicemenu/config for per-user configuration.
 # XDG_CONFIG_HOME is respected if it has been set.
 
-# Set Udisks command path.
-udisks="/usr/bin/udisks"
-
 # Set filemanager command. The mount point is passed as the first argument.
-#filemanager="/usr/bin/uxterm -wf -e /usr/bin/mc"
 filemanager="/usr/bin/Thunar"
 #filemanager="/usr/bin/pcmanfm"
 
@@ -80,6 +76,7 @@ fancy_sort="0"
 # Uncomment the examples below, or modify them to pass any arbitrary commands.
 # post_mount is run immediately after a successful mount operation, and
 # post_unmount is run immediately after a successful unmount operation.
+# Note that these examples date from UDISKS not UDISKS2.
 
 # Set "run_post_mount" to "0" to disable or "1" to enable.
 run_post_mount="1"
@@ -98,4 +95,5 @@ run_post_unmount="1"
 #}
 
 # Set default mount options for Udisks.
-mount_options="--mount-options nosuid,noexec,noatime"
+# These don't really work right now.
+#mount_options="--mount-options nosuid,noexec,noatime"

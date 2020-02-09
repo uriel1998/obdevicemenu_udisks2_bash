@@ -419,7 +419,6 @@ device_menu() {
 		fi
 
 		info_internal="$(info_internal "${devmajor}")"
-        echo "info internal= ${devmajor} $info_internal" >> /home/steven/1.1
 		if (( info_internal == 1 )) && (( show_internal == 0 )); then
 			continue
 		fi

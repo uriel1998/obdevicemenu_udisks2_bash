@@ -44,7 +44,7 @@ declare filemanager="/usr/bin/Thunar"
 declare notify="/usr/bin/notify-send"
 declare notify_options="--expire-time=3000"
 declare optical_devices="-E ^/dev/sr[0-9]+"
-declare removable_devices="-E ^/dev/sd[b-z][0-9]*|^/dev/mmcblk[0-9]+p*[0-9]*"
+declare removable_devices="-E ^/dev/sd[a-z][0-9]*|^/dev/mmcblk[0-9]+p*[0-9]*"
 
 declare -i show_internal=0
 declare -i show_notifications=0
@@ -110,9 +110,9 @@ info_has_media() {
 
 # Need to find the udisks2 version - does it exist?
 info_internal() {
-	udisks --show-info ${1} \
-		| grep -m 1 -w "^[[:space:]]*system internal:" \
-		| awk '{print $3}'
+    udisksctl info --block-device ${1} \
+		| grep -m 1 -w "HintSystem:" \
+		| awk '{print $2}' | grep -c "true"
 }
 
 info_label() {
@@ -382,7 +382,7 @@ device_menu() {
 
 	printf '%s\n' "<separator label=\"Removable media\" />"
 
-	removable=( $(lsblk -l -n | grep "part" | awk '{print "/dev/"$1}' \
+	removable=( $(lsblk -l -n | grep -e "part" -e "disk" | awk '{print "/dev/"$1}' \
 		| grep -ow ${removable_devices} | sort) )
 
 	if (( fancy_sort == 1 )); then
@@ -419,7 +419,7 @@ device_menu() {
 		fi
 
 		info_internal="$(info_internal "${devmajor}")"
-
+        echo "info internal= ${devmajor} $info_internal" >> /home/steven/1.1
 		if (( info_internal == 1 )) && (( show_internal == 0 )); then
 			continue
 		fi

@@ -32,7 +32,7 @@ notify_options="--expire-time=3000"
 # If you wish to do more complicated matches, the string can be modified to
 # include grep options, such as setting it to "-e sdb[0-9]* -e sdc1". This
 # allows more control over which devices are processed/ignored by the menu.
-removable_devices="-E ^/dev/sd[b-z][0-9]*|^/dev/mmcblk[0-9]+p*[0-9]*"
+removable_devices="-E ^/dev/sd[a-z][0-9]*|^/dev/mmcblk[0-9]+p*[0-9]*"
 # old config below
 #removable_devices="sd[b-z]*[0-9]*"
 #removable_devices="mmc[a-z]*[0-9]*"
